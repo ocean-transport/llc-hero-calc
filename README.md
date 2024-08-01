@@ -29,7 +29,8 @@ For this calculation we have to perform several steps:
 2) Split the resulting spatial fields up into a number of smaller regions;
 3) Compute the 3-dimensional vorticity-strain-divergence histogram for each region, without also counting over the time dimension;
 4) Average the resulting histograms over some time period (e.g. a few days),
-5) Extract useful information from the resulting histograms.
+5) Save the new regional histogram dataset to an intermediate zarr store,
+6) Extract useful information from the resulting histograms.
 
 For (1) we used [xGCM](https://github.com/xgcm/xgcm) - see also [these AMS talk slides](https://speakerdeck.com/tomnicholas/xgcm-staggered-grids-topologies-and-ufuncs-in-python). To compute arbitary operations like vorticity we refactored xGCM to be able to apply "grid ufuncs". The [documentation on grid ufuncs is here](https://xgcm.readthedocs.io/en/latest/grid_ufuncs.html), but a blog post is also planned.
 
@@ -39,11 +40,11 @@ For (2) and (4) we use [xarray](https://xarray.dev/)'s built-in [`.coarsen` feat
 
 All these steps have to be done on a very large amount of data, which we handled using dask. We found that dask's distributed scheduler needed to be improved before it could handle this workload - see this [pangeo blog post](https://medium.com/pangeo/dask-distributed-and-pangeo-better-performance-for-everyone-thanks-to-science-software-63f85310a36b) and this [Coiled blog post](https://www.coiled.io/blog/reducing-dask-memory-usage).
 
-For the code used for the computation see notebooks in this repository in the `compute` directory.
+For (5) you can see the code used for the computation in the `compute` directory, specifically [this notebook](https://github.com/ocean-transport/llc-hero-calc/blob/main/compute/coarsen-nan-padding.ipynb). The actual dataset was written out to a zarr store in this [bucket](gs://leap-persistent/tomnicholas/hero-calc/compute/llc4320/vort_strain_div_histogram_coarsen_nan_padding.zarr).
 
 ## Results
 
-We are in the progress of doing (5). See notebooks in this repository in the `analysis` directory.
+We are in the progress of doing (6). See notebooks in this repository in the `analysis` directory.
 
 ## Data availability
 
