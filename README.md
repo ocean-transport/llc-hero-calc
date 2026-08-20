@@ -1,6 +1,14 @@
 # llc-hero-calc
 
-Notebooks and scripts for vorticity-strain-divergence histogram calculations on LLC4320 data.
+Notebooks and scripts for vorticity-strain-divergence histogram calculations on LLC4320 data. These calculations are used to generate the figures in Jones et al. (link and DOI pending). 
+
+## Table of Contents
+* [What is LLC4320](#LLC4320)
+* [What are vorticity-strain histograms](#Vorticity-strain-histograms)
+* [Goals of the project](Goals-of-the-project)
+* [Computation](Computation)
+* [Data availability](Data-availability)
+* [Contents of this repository](contents-of-the-repository)
 
 ## LLC4320
 
@@ -16,7 +24,7 @@ They generally look like this
 
 ![image](https://user-images.githubusercontent.com/35968931/221258445-0ae6267b-ff00-45ce-8e88-c17217931130.png)
 
-## Aim
+## Goals of the project
 
 We aim to compute the full vorticity-strain-divergence histogram for all locations and all times in the LLC4320 dataset. We will divide the whole global ocean up into many small regions (similar to the approach used for spectral analysis in Torres et al. 2018) and create one histogram for each region, averaged over an intermediate time period.
 
@@ -42,10 +50,16 @@ All these steps have to be done on a very large amount of data, which we handled
 
 For (5) you can see the code used for the computation in the `compute` directory, specifically [this notebook](https://github.com/ocean-transport/llc-hero-calc/blob/main/compute/coarsen-nan-padding.ipynb). The actual dataset was written out to a zarr store in this [bucket](gs://leap-persistent/tomnicholas/hero-calc/compute/llc4320/vort_strain_div_histogram_coarsen_nan_padding.zarr).
 
-## Results
-
-We are in the progress of doing (6). See notebooks in this repository in the `analysis` directory.
+The results (6) are documented in the manuscript (link and DOI pending). 
 
 ## Data availability
 
-Currently available as a Zarr store sat in a persistent Google cloud storage [bucket](gs://leap-persistent/tomnicholas/hero-calc/compute/llc4320/vort_strain_div_histogram_coarsen_nan_padding.zarr) on the [LEAP-Pangeo hub](https://leap-stc.github.io/intro.html) but we plan to put the output histogram data in a permanent public bucket for other researchers to use.
+The compressed histogram data is available on Zenodo as a netcdf (link and DOI pending). Please note that the data is extremely compressed: we strongly advise users to use xarray's `xr.open_dataset("hist_full.nc", chunks={})` or a similar lazy loading function in your language of choice. 
+
+## Contents of the repository
+
+This repo is structured as follows:
+- The directory `compute` contains scripts for creating the histograms from LLC4320 surface data.
+- The directory `analysis` contains scripts for generating the plots in the manuscript from the data provided on Zenodo.
+    - Inside the directory `analysis`, the directory `production_version` contains the full code to create the plots from the histogram data stored on the cloud.
+    - The directory `code_to_create_zenodo` contains code used to create the zenodo dataset. 
