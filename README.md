@@ -54,7 +54,9 @@ The results (6) are documented in the manuscript (link and DOI pending).
 
 ## Data availability
 
-The compressed histogram data is available on Zenodo as a netcdf (link and DOI pending). Please note that the data is extremely compressed: we strongly advise users to use xarray's `xr.open_dataset("hist_full.nc", chunks={})` or a similar lazy loading function in your language of choice. 
+The compressed histogram data is available on Zenodo as a netcdf here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22031533.svg)](https://doi.org/10.5281/zenodo.22031533)
+
+Please note that the data is extremely compressed: we strongly advise users to use xarray's `xr.open_dataset("hist_full.nc", chunks={})` or a similar lazy loading function in your language of choice. 
 
 ## Contents of the repository
 
