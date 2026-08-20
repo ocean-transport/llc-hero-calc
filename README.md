@@ -5,10 +5,10 @@ Notebooks and scripts for vorticity-strain-divergence histogram calculations on 
 ## Table of Contents
 * [What is LLC4320](#LLC4320)
 * [What are vorticity-strain histograms](#Vorticity-strain-histograms)
-* [Goals of the project](Goals-of-the-project)
-* [Computation](Computation)
-* [Data availability](Data-availability)
-* [Contents of this repository](contents-of-the-repository)
+* [Goals of the project](#Goals-of-the-project)
+* [Computation](#Computation)
+* [Data availability](#Data-availability)
+* [Contents of this repository](#Contents-of-the-repository)
 
 ## LLC4320
 
